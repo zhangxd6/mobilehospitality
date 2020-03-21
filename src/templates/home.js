@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 
-import {Layout} from '../components/index';
-import {htmlToReact, getPages, safePrefix, Link, markdownify} from '../utils';
+import { Layout } from '../components/index';
+import { htmlToReact, getPages, safePrefix, Link, markdownify } from '../utils';
 
 export default class Home extends React.Component {
     render() {
@@ -19,7 +19,14 @@ export default class Home extends React.Component {
                                 <img src={safePrefix(_.get(post, 'frontmatter.home_img'))} alt="" />
                             </span>
                             <Link to={safePrefix(_.get(post, 'url'))}>
-                                <h2>{_.get(post, 'frontmatter.title')}</h2>
+                                <h1>{_.get(post, 'frontmatter.title')}</h1>
+                                <h2><i class="fa fa-phone" aria-hidden="true">{_.get(post, 'frontmatter.phone')}</i></h2>
+                                <h5>
+                                    {_.get(post, 'frontmatter.curbside') && <i class="fa fa-car" aria-hidden="true">Curbside</i>}
+                                    {_.get(post, 'frontmatter.pickup') && <i class="fa fa-user" aria-hidden="true">Pickup</i>}
+                                    {_.get(post, 'frontmatter.delivery') && <i class="fa fa-truck" aria-hidden="true">Delivery</i>}
+                                    {_.get(post, 'frontmatter.alcohol') && <i class="fa fa-glass" aria-hidden="true">Alcohol</i>}
+                                </h5>
                                 <div className="content">
                                     {markdownify(_.get(post, 'frontmatter.excerpt'))}
                                 </div>
